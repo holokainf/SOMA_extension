@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+    <data>
+
+<!-- Wizard stock stats -->
+
+        <record id="sales_stock_wizard_view" model="ir.ui.view">
+            <field name="name">stock.stats.form</field>
+            <field name="model">stock.stats.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            <form string="Rapport des Stocks" version="7.0">
+	            	<group col="2">
+		                <separator string="Rapport des Stocks" colspan="2"/>
+
+		                  <newline/>
+                              <group col="2">
+                                <!--<field name="period_from_id" domain="[('fiscalyear_id', '=', fiscalyear_id)]" colspan="2"/>-->
+                                <field name="date_start" colspan="2"/>
+                                <field name="date_end" colspan="2"/>
+                              </group>
+                          <newline/>
+		                  <group col="2">
+		                  	  <field name="stats_type"/>
+		                  </group>
+		                  <footer>
+		                        <!--<button icon="terp-camera_test" string="Export xls" name="print_report_xls" type="object" />-->
+                              <button string="Export xls" class="oe_highlight"  name="print_report_xls" type="object" />
+                              ou
+                              <button class="oe_link" special="cancel" string="Annuler"/>
+		                  </footer>
+	                 </group>
+
+            </form>
+            </field>
+        </record>
+
+        <record id="action_view_wizard_stock_stats" model="ir.actions.act_window">
+            <field name="name">Rapport des Stocks</field>
+            <field name="res_model">stock.stats.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+         <menuitem name="Statistiques des stocks" action="action_view_wizard_stock_stats" id="action_stock_stats" parent="stock.menu_stock_product" sequence="3"/>
+
+
+        <record id="stock_stats_wizard_export_view" model="ir.ui.view">
+            <field name="name">stock.stats.wizard.export.view</field>
+            <field name="model">stock.stats.wizard.export</field>
+            <field name="arch" type="xml">
+
+                <form string="Export Excel" version="7.0">
+                     <group colspan="4">
+	                     <separator string="Export Terminé" colspan="4"/>
+	                     <field name="name" invisible="1" colspan="4"/>
+	                     <separator string=" " colspan="4"/>
+	                     <field name="data" nolabel="1" readonly="1" filename="name" colspan="4"/>
+                         <footer>
+	                     	<button icon="gtk-close" special="cancel" string="Fermer"/>
+	                     </footer>
+                    </group>
+                </form>
+
+            </field>
+        </record>
+
+<!-- Wizard Invoice stats -->
+
+        <record id="invoice_report_wizard_view" model="ir.ui.view">
+            <field name="name">Reporting des ventes</field>
+            <field name="model">invoice.report.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            <form string="Star Oil Mali - Sale Report" version="7.0">
+	            	<group col="2">
+		                <separator string="Reporting des ventes" colspan="2"/>
+
+		                  <newline/>
+                          <group col="2">
+                            <field name="date_start" colspan="2"/>
+                            <field name="date_end" colspan="2"/>
+                          </group>
+                          <newline/>
+		                  <footer>
+                              <button string="Export xls" class="oe_highlight"  name="print_report_xls" type="object" />
+                              ou
+                              <button class="oe_link" special="cancel" string="Annuler"/>
+		                  </footer>
+	                 </group>
+
+            </form>
+            </field>
+        </record>
+
+
+        <record id="action_view_invoice_report_wizard" model="ir.actions.act_window">
+            <field name="name">Reporting des ventes</field>
+            <field name="res_model">invoice.report.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <!--<menuitem id="sales_stats_menu" name="Statistiques" parent="base.menu_base_partner" sequence="10" />-->
+        <!--<menuitem name="Reporting des ventes" action="action_view_invoice_report_wizard" id="action_invoice_report" parent="sales_stats_menu" sequence="2"/>-->
+        <menuitem name="Reporting des ventes" action="action_view_invoice_report_wizard" id="action_invoice_report" parent="staroil_reports.sales_stats_menu" sequence="2"/>
+
+        <record id="invoice_report_wizard_export_view" model="ir.ui.view">
+            <field name="name">invoice.report.wizard.export.view</field>
+            <field name="model">invoice.report.wizard.export</field>
+            <field name="arch" type="xml">
+
+                <form string="Export Excel" version="7.0">
+                     <group colspan="4">
+	                     <separator string="Export Terminé" colspan="4"/>
+	                     <field name="name" invisible="1" colspan="4"/>
+	                     <separator string=" " colspan="4"/>
+	                     <field name="data" nolabel="1" readonly="1" filename="name" colspan="4"/>
+                         <footer>
+	                     	<button icon="gtk-close" special="cancel" string="Fermer"/>
+	                     </footer>
+                    </group>
+                </form>
+
+            </field>
+</record>
+        <!--base.menu_base_partner.sales_stats_menu-->
+
+    </data>
+</openerp>
